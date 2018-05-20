@@ -10,9 +10,17 @@ bindsym $mod+Home exec --no-startup-id systemctl reboot
 set $WALLPAPER ~/wallpapers/high_sierra_wallpaper.jpg
 set $COMPTON_CONFIG ~/.compton.conf
 
-# autostart processes
+# autokey
 exec --no-startup-id autokey
+# redshift
 exec --no-startup-id redshift
+# compton
+exec --no-startup-id compton --config $COMPTON_CONFIG
+# megasync
+exec --no-startup-id megasync
+
+# mega
+for_window [class="MEGAsync"] kill
 
 # fast workspace switcher
 bindsym $mod+Tab workspace next_on_output
@@ -28,6 +36,10 @@ bindsym $mod+l focus right
 # move focused window
 bindsym $mod+h resize shrink width 2 px or 2 ppt
 bindsym $mod+apostrophe resize grow width 2 px or 2 ppt
+# move container
+bindsym $mod+Shift+j move container left
+bindsym $mod+Shift+l move container right
+
 # enter fullscreen mode for the focused container
 bindsym $mod+i fullscreen toggle
 # switch to workspace
@@ -46,13 +58,10 @@ bindsym $mod+r restart
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-# compton
-exec --no-startup-id compton --config $COMPTON_CONFIG
 # wallpaper
 exec_always --no-startup-id feh --bg-scale $WALLPAPER
 # removes title bar
-for_window [class="^.*"] border pixel 2
-new_window 1pixel
+for_window [class="^.*"] border pixel 0
 # don't follow focus on mouse
 focus_follows_mouse no
 
