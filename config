@@ -12,6 +12,7 @@ set $COMPTON_CONFIG ~/.compton.conf
 
 # autostart processes
 exec --no-startup-id autokey
+exec --no-startup-id redshift
 
 # fast workspace switcher
 bindsym $mod+Tab workspace next_on_output
