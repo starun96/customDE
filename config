@@ -7,8 +7,7 @@ bindsym $mod+End exec --no-startup-id systemctl poweroff
 bindsym $mod+Home exec --no-startup-id systemctl reboot
 
 # paths
-set $WALLPAPER ~/theming/high_sierra_wallpaper.jpg
-set $LOGIN_BACKGROUND ~/theming/
+set $WALLPAPER ~/wallpapers/high_sierra_wallpaper.jpg
 set $COMPTON_CONFIG ~/.compton.conf
 
 # autostart processes
@@ -21,13 +20,13 @@ bindsym $mod+Return exec --no-startup-id i3-sensible-terminal
 # kill focused window
 bindsym $mod+a kill
 # start dmenu (for applications)
-bindsym $mod+space exec --no-startup-id i3-dmenu-desktop --dmenu="dmenu -i -fn 'SFNS Display'"
+bindsym $mod+space exec --no-startup-id i3-dmenu-desktop --dmenu="dmenu -i -b -fn Ubuntu"
 # change focus
 bindsym $mod+j focus left
 bindsym $mod+l focus right
 # move focused window
-bindsym $mod+Shift+i resize grow width 2 px or 2 ppt
-bindsym $mod+Shift+k resize shrink width 2 px or 2 ppt
+bindsym $mod+h resize shrink width 2 px or 2 ppt
+bindsym $mod+apostrophe resize grow width 2 px or 2 ppt
 # enter fullscreen mode for the focused container
 bindsym $mod+i fullscreen toggle
 # switch to workspace
@@ -55,8 +54,6 @@ for_window [class="^.*"] border pixel 2
 new_window 1pixel
 # don't follow focus on mouse
 focus_follows_mouse no
-#fonts
-font pango:SFNS Display 11
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
