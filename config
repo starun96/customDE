@@ -1,0 +1,67 @@
+# mod key
+set $mod Mod4
+
+# system functions
+bindsym $mod+Delete exec --no-startup-id systemctl suspend
+bindsym $mod+End exec --no-startup-id systemctl poweroff
+bindsym $mod+Home exec --no-startup-id systemctl reboot
+
+# paths
+set $WALLPAPER ~/theming/high_sierra_wallpaper.jpg
+set $LOGIN_BACKGROUND ~/theming/
+set $COMPTON_CONFIG ~/.compton.conf
+
+# autostart processes
+exec --no-startup-id autokey
+
+# fast workspace switcher
+bindsym $mod+Tab workspace next_on_output
+# start a terminal
+bindsym $mod+Return exec --no-startup-id i3-sensible-terminal
+# kill focused window
+bindsym $mod+a kill
+# start dmenu (for applications)
+bindsym $mod+space exec --no-startup-id i3-dmenu-desktop --dmenu="dmenu -i -fn 'SFNS Display'"
+# change focus
+bindsym $mod+j focus left
+bindsym $mod+l focus right
+# move focused window
+bindsym $mod+Shift+i resize grow width 2 px or 2 ppt
+bindsym $mod+Shift+k resize shrink width 2 px or 2 ppt
+# enter fullscreen mode for the focused container
+bindsym $mod+i fullscreen toggle
+# switch to workspace
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+# restart i3 in place (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+r restart
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# compton
+exec --no-startup-id compton --config $COMPTON_CONFIG
+# wallpaper
+exec_always --no-startup-id feh --bg-scale $WALLPAPER
+# removes title bar
+for_window [class="^.*"] border pixel 2
+new_window 1pixel
+# don't follow focus on mouse
+focus_follows_mouse no
+#fonts
+font pango:SFNS Display 11
+
+# Pulse Audio controls
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+
+# repeat rate
+exec_always --no-startup-id xset r rate 300 25
