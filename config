@@ -9,7 +9,7 @@ bindsym $mod+Home exec --no-startup-id systemctl reboot
 # paths
 set $WALLPAPER ~/wallpapers/high_sierra_wallpaper.jpg
 set $COMPTON_CONFIG ~/.compton.conf
-
+set $GNOME_SETTINGS /usr/lib/gnome-settings-daemon/gsd-xsettings
 # autokey
 exec --no-startup-id autokey
 # redshift
@@ -18,10 +18,11 @@ exec --no-startup-id redshift
 exec --no-startup-id compton --config $COMPTON_CONFIG
 # megasync
 exec --no-startup-id megasync
+# gnome-settings
+exec --no-startup-id $GNOME_SETTINGS
 
 # mega
 for_window [class="MEGAsync"] kill
-
 # fast workspace switcher
 bindsym $mod+Tab workspace next_on_output
 # start a terminal
@@ -29,7 +30,7 @@ bindsym $mod+Return exec --no-startup-id i3-sensible-terminal
 # kill focused window
 bindsym $mod+a kill
 # start dmenu (for applications)
-bindsym $mod+space exec --no-startup-id i3-dmenu-desktop --dmenu="dmenu -i -b -fn Ubuntu"
+bindsym $mod+space exec --no-startup-id i3-dmenu-desktop --dmenu="dmenu -i -b -fn 'SFNS Display'"
 # change focus
 bindsym $mod+j focus left
 bindsym $mod+l focus right
@@ -61,9 +62,12 @@ floating_modifier $mod
 # wallpaper
 exec_always --no-startup-id feh --bg-scale $WALLPAPER
 # removes title bar
-for_window [class="^.*"] border pixel 0
+for_window [class="^.*"] border pixel 4
+# hide edge borders
+hide_edge_borders both
 # don't follow focus on mouse
 focus_follows_mouse no
+
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
