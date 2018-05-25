@@ -8,63 +8,81 @@ bindsym $mod+Home exec --no-startup-id systemctl reboot
 
 # paths
 set $WALLPAPER ~/wallpapers/high_sierra_wallpaper.jpg
-set $COMPTON_CONFIG ~/.compton.conf
+set $COMPTON_CONFIG ~/.config/i3/compton.conf
 set $GNOME_SETTINGS /usr/lib/gnome-settings-daemon/gsd-xsettings
 set $DUNST ~/.config/dunst/dunstrc
 set $POLKIT_GNOME /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 set $UPDATE_SCRIPT ~/customDE/scripts/update_config.sh
+
 # autokey
 exec --no-startup-id autokey
+
 # redshift
 exec --no-startup-id redshift
+
 # compton
 exec --no-startup-id compton --config $COMPTON_CONFIG
+
 # megasync
 exec --no-startup-id megasync
+
 # gnome-settings
 exec --no-startup-id $GNOME_SETTINGS
+
 # gnome-power-manager
 exec --no-startup-id gnome-power-manager
+
 # polkit-gnome
 exec --no-startup-id $POLKIT_GNOME
 
 # kill default dunst
 exec --no-startup-id killall dunst
+
 # dunst
 exec --no-startup-id dunst -config $DUNST
 
 # mega
 for_window [class="MEGAsync"] kill
+
 # fast workspace switcher
 bindsym $mod+Tab workspace next_on_output
+
 # start a terminal
 bindsym $mod+Return exec --no-startup-id i3-sensible-terminal
+
 # kill focused window
 bindsym $mod+a kill
-# start dmenu (for applications)
+
+# start dmenu
 bindsym $mod+space exec --no-startup-id i3-dmenu-desktop --dmenu="dmenu -i -b -nf '#000000' -nb '#DCDCDC' -sb '#2A7DEB' -sf '#FFFFFF' -fn 'SFNS Display'"
+
 # change focus
 bindsym $mod+j focus left
 bindsym $mod+l focus right
+
 # move focused window
 bindsym $mod+h resize shrink width 2 px or 2 ppt
 bindsym $mod+apostrophe resize grow width 2 px or 2 ppt
+
 # move container
 bindsym $mod+Shift+j move container left
 bindsym $mod+Shift+l move container right
 
 # enter fullscreen mode for the focused container
 bindsym $mod+i fullscreen toggle
+
 # switch to workspace
 bindsym $mod+1 workspace 1
 bindsym $mod+2 workspace 2
 bindsym $mod+3 workspace 3
 bindsym $mod+4 workspace 4
+
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1
 bindsym $mod+Shift+2 move container to workspace 2
 bindsym $mod+Shift+3 move container to workspace 3
 bindsym $mod+Shift+4 move container to workspace 4
+
 # restart i3 in place (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+q exec --no-startup-id $UPDATE_SCRIPT
 bindsym $mod+r restart
@@ -74,10 +92,13 @@ floating_modifier $mod
 
 # wallpaper
 exec_always --no-startup-id feh --bg-scale $WALLPAPER
+
 # removes title bar
 for_window [class="^.*"] border pixel 4
+
 # hide edge borders
 hide_edge_borders both
+
 # don't follow focus on mouse
 focus_follows_mouse no
 
